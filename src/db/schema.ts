@@ -54,7 +54,7 @@ export const sessionTable = pgTable("session", {
     .references(() => userTable.id, { onDelete: "cascade" }),
 });
 
-export const account = pgTable("account", {
+export const accountTable = pgTable("account", {
   id: text("id").primaryKey(),
 
   accountId: text("account_id").notNull(),
