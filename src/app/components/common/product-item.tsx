@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { productTable, productVariantTable } from "@/db/schema";
-import { formatCentsToBRL } from "@/helper/money";
+import { formatCentsToBRL } from "@/helpers/money";
 
 interface ProductItemProps {
   product: typeof productTable.$inferSelect & {

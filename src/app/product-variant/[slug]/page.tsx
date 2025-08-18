@@ -7,7 +7,7 @@ import { Header } from "@/app/components/common/header";
 import ProductList from "@/app/components/common/product-list";
 import { db } from "@/db";
 import { productTable, productVariantTable } from "@/db/schema";
-import { formatCentsToBRL } from "@/helper/money";
+import { formatCentsToBRL } from "@/helpers/money";
 
 import ProductActions from "./components/product-actions";
 import VariantSelector from "./components/variant-selector";

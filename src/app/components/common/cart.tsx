@@ -3,7 +3,7 @@ import { ShoppingBasketIcon } from "lucide-react";
 
 import { getCart } from "@/actions/get-cart";
 import { Button } from "@/components/ui/button";
-import { formatCentsToBRL } from "@/helper/money";
+import { formatCentsToBRL } from "@/helpers/money";
 
 import { ScrollArea } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
@@ -50,6 +50,7 @@ export const Cart = () => {
                     productVariantPriceInCents={
                       item.productVariant.priceInCents
                     }
+                    productVariantId={item.productVariant.id}
                     quantity={item.quantity}
                   />
                 ))}
