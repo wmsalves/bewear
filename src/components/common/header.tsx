@@ -19,7 +19,6 @@ import { Cart } from "./cart";
 
 export const Header = () => {
   const { data: session } = authClient.useSession();
-
   return (
     <header className="flex items-center justify-between p-5">
       <Link href="/">
@@ -33,12 +32,10 @@ export const Header = () => {
               <MenuIcon />
             </Button>
           </SheetTrigger>
-
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
-
             <div className="px-5">
               {session?.user ? (
                 <>
@@ -48,23 +45,19 @@ export const Header = () => {
                         <AvatarImage
                           src={session?.user?.image as string | undefined}
                         />
-
                         <AvatarFallback>
                           {session?.user?.name?.split(" ")?.[0]?.[0]}
-
                           {session?.user?.name?.split(" ")?.[1]?.[0]}
                         </AvatarFallback>
                       </Avatar>
 
                       <div>
                         <h3 className="font-semibold">{session?.user?.name}</h3>
-
                         <span className="text-muted-foreground block text-xs">
                           {session?.user?.email}
                         </span>
                       </div>
                     </div>
-
                     <Button
                       variant="outline"
                       size="icon"
@@ -77,7 +70,6 @@ export const Header = () => {
               ) : (
                 <div className="flex items-center justify-between">
                   <h2 className="font-semibold">Olá. Faça seu login!</h2>
-
                   <Button size="icon" asChild variant="outline">
                     <Link href="/authentication">
                       <LogInIcon />

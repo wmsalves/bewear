@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { ShoppingBasketIcon } from "lucide-react";
+"use client";
 
-import { getCart } from "@/actions/get-cart";
-import { useCart } from "@/hooks/queries/use-cart";
+import { ShoppingBasketIcon } from "lucide-react";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { formatCentsToBRL } from "@/helpers/money";
+import { useCart } from "@/hooks/queries/use-cart";
 
 import { ScrollArea } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
@@ -19,7 +20,6 @@ import CartItem from "./cart-item";
 
 export const Cart = () => {
   const { data: cart } = useCart();
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -27,7 +27,6 @@ export const Cart = () => {
           <ShoppingBasketIcon />
         </Button>
       </SheetTrigger>
-
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Carrinho</SheetTitle>
@@ -41,13 +40,13 @@ export const Cart = () => {
                   <CartItem
                     key={item.id}
                     id={item.id}
+                    productVariantId={item.productVariant.id}
                     productName={item.productVariant.product.name}
                     productVariantName={item.productVariant.name}
                     productVariantImageUrl={item.productVariant.imageUrl}
                     productVariantPriceInCents={
                       item.productVariant.priceInCents
                     }
-                    productVariantId={item.productVariant.id}
                     quantity={item.quantity}
                   />
                 ))}
@@ -61,7 +60,6 @@ export const Cart = () => {
 
               <div className="flex items-center justify-between text-xs font-medium">
                 <p>Subtotal</p>
-
                 <p>{formatCentsToBRL(cart?.totalPriceInCents ?? 0)}</p>
               </div>
 
@@ -69,7 +67,6 @@ export const Cart = () => {
 
               <div className="flex items-center justify-between text-xs font-medium">
                 <p>Entrega</p>
-
                 <p>GRÁTIS</p>
               </div>
 
@@ -77,11 +74,12 @@ export const Cart = () => {
 
               <div className="flex items-center justify-between text-xs font-medium">
                 <p>Total</p>
-
                 <p>{formatCentsToBRL(cart?.totalPriceInCents ?? 0)}</p>
               </div>
 
-              <Button className="mt-5 rounded-full">Finalizar compra</Button>
+              <Button className="mt-5 rounded-full" asChild>
+                <Link href="/cart/identification">Finalizar compra</Link>
+              </Button>
             </div>
           )}
         </div>
@@ -89,3 +87,5 @@ export const Cart = () => {
     </Sheet>
   );
 };
+
+// SERVER ACTION
