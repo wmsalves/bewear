@@ -1,6 +1,7 @@
 "use server";
 
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
 import { db } from "@/db";
@@ -50,12 +51,38 @@ export const finishOrder = async () => {
   );
 
   await db.transaction(async (tx) => {
+    if (!cart.shippingAddress) {
+      throw new Error("Shipping address not found");
+    }
+
     const [order] = await tx
 
       .insert(orderTable)
 
       .values({
-        ...cart.shippingAddress!,
+        email: cart.shippingAddress.email,
+
+        zipCode: cart.shippingAddress.zipCode,
+
+        country: cart.shippingAddress.country,
+
+        phone: cart.shippingAddress.phone,
+
+        cpfOrCnpj: cart.shippingAddress.cpfOrCnpj,
+
+        city: cart.shippingAddress.city,
+
+        complement: cart.shippingAddress.complement,
+
+        neighborhood: cart.shippingAddress.neighborhood,
+
+        number: cart.shippingAddress.number,
+
+        recipientName: cart.shippingAddress.recipientName,
+
+        state: cart.shippingAddress.state,
+
+        street: cart.shippingAddress.street,
 
         userId: session.user.id,
 
@@ -82,6 +109,8 @@ export const finishOrder = async () => {
       }));
 
     await tx.insert(orderItemTable).values(orderItemsPayload);
+
+    await tx.delete(cartTable).where(eq(cartTable.id, cart.id));
 
     await tx.delete(cartItemTable).where(eq(cartItemTable.cartId, cart.id));
   });
