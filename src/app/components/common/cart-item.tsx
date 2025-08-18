@@ -6,6 +6,9 @@ import { toast } from "sonner";
 import { addProductToCart } from "@/actions/add-cart-product";
 import { decreaseCartProductQuantity } from "@/actions/decrease-cart-product-quantity";
 import { removeProductFromCart } from "@/actions/remove-cart-product";
+import { useDecreaseCartProduct } from "@/app/hooks/mutations/use-decrease-cart-product";
+import { useIncreaseCartProduct } from "@/app/hooks/mutations/use-increase-cart-product";
+import { useRemoveProductFromCart } from "@/app/hooks/mutations/use-remove-product-from-cart";
 import { formatCentsToBRL } from "@/helpers/money";
 
 import { Button } from "../ui/button";
@@ -41,37 +44,12 @@ const CartItem = ({
 
   quantity,
 }: CartItemProps) => {
-  const queryClient = useQueryClient();
+  const removeProductFromCartMutation = useRemoveProductFromCart(id);
 
-  const removeProductFromCartMutation = useMutation({
-    mutationKey: ["remove-cart-product"],
+  const decreaseCartProductQuantityMutation = useDecreaseCartProduct(id);
 
-    mutationFn: () => removeProductFromCart({ cartItemId: id }),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
-    },
-  });
-
-  const decreaseCartProductQuantityMutation = useMutation({
-    mutationKey: ["decrease-cart-product-quantity"],
-
-    mutationFn: () => decreaseCartProductQuantity({ cartItemId: id }),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
-    },
-  });
-
-  const increaseCartProductQuantityMutation = useMutation({
-    mutationKey: ["increase-cart-product-quantity"],
-
-    mutationFn: () => addProductToCart({ productVariantId, quantity: 1 }),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
-    },
-  });
+  const increaseCartProductQuantityMutation =
+    useIncreaseCartProduct(productVariantId);
 
   const handleDeleteClick = () => {
     removeProductFromCartMutation.mutate(undefined, {

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ShoppingBasketIcon } from "lucide-react";
 
 import { getCart } from "@/actions/get-cart";
+import { useCart } from "@/app/hooks/queries/use-cart";
 import { Button } from "@/components/ui/button";
 import { formatCentsToBRL } from "@/helpers/money";
 
@@ -17,11 +18,7 @@ import {
 import CartItem from "./cart-item";
 
 export const Cart = () => {
-  const { data: cart, isPending: cartIsLoading } = useQuery({
-    queryKey: ["cart"],
-
-    queryFn: () => getCart(),
-  });
+  const { data: cart } = useCart();
 
   return (
     <Sheet>
