@@ -6,10 +6,10 @@ import { toast } from "sonner";
 import { addProductToCart } from "@/actions/add-cart-product";
 import { decreaseCartProductQuantity } from "@/actions/decrease-cart-product-quantity";
 import { removeProductFromCart } from "@/actions/remove-cart-product";
-import { useDecreaseCartProduct } from "@/app/hooks/mutations/use-decrease-cart-product";
-import { useIncreaseCartProduct } from "@/app/hooks/mutations/use-increase-cart-product";
-import { useRemoveProductFromCart } from "@/app/hooks/mutations/use-remove-product-from-cart";
 import { formatCentsToBRL } from "@/helpers/money";
+import { useDecreaseCartProduct } from "@/hooks/mutations/use-decrease-cart-product";
+import { useIncreaseCartProduct } from "@/hooks/mutations/use-increase-cart-product";
+import { useRemoveProductFromCart } from "@/hooks/mutations/use-remove-product-from-cart";
 
 import { Button } from "../ui/button";
 
