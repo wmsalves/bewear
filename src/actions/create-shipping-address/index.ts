@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
 import { db } from "@/db";
@@ -25,38 +26,25 @@ export const createShippingAddress = async (
   }
 
   const [shippingAddress] = await db
-
     .insert(shippingAddressTable)
-
     .values({
       userId: session.user.id,
-
       recipientName: data.fullName,
-
       street: data.address,
-
       number: data.number,
-
       complement: data.complement || null,
-
       city: data.city,
-
       state: data.state,
-
       neighborhood: data.neighborhood,
-
       zipCode: data.zipCode,
-
       country: "Brasil",
-
       phone: data.phone,
-
       email: data.email,
-
       cpfOrCnpj: data.cpf,
     })
-
     .returning();
+
+  revalidatePath("/cart/identification");
 
   return shippingAddress;
 };

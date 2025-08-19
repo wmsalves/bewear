@@ -8,32 +8,25 @@ import { Button } from "@/components/ui/button";
 
 interface AddToCartButtonProps {
   productVariantId: string;
-
   quantity: number;
 }
 
 const AddToCartButton = ({
   productVariantId,
-
   quantity,
 }: AddToCartButtonProps) => {
   const queryClient = useQueryClient();
-
   const { mutate, isPending } = useMutation({
     mutationKey: ["addProductToCart", productVariantId, quantity],
-
     mutationFn: () =>
       addProductToCart({
         productVariantId,
-
         quantity,
       }),
-
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
-
   return (
     <Button
       className="rounded-full"

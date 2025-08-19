@@ -27,25 +27,18 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
 const formSchema = z
-
   .object({
     name: z.string("Nome inválido.").trim().min(1, "Nome é obrigatório."),
-
     email: z.email("E-mail inválido."),
-
     password: z.string("Senha inválida.").min(8, "Senha inválida."),
-
     passwordConfirmation: z.string("Senha inválida.").min(8, "Senha inválida."),
   })
-
   .refine(
     (data) => {
       return data.password === data.passwordConfirmation;
     },
-
     {
       error: "As senhas não coincidem.",
-
       path: ["passwordConfirmation"],
     },
   );
@@ -56,14 +49,10 @@ const SignUpForm = () => {
   const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-
     defaultValues: {
       name: "",
-
       email: "",
-
       password: "",
-
       passwordConfirmation: "",
     },
   });
@@ -75,13 +64,11 @@ const SignUpForm = () => {
       password: values.password,
       fetchOptions: {
         onSuccess: () => {
-          toast.success("Conta criada com sucesso!");
           router.push("/");
         },
-
         onError: (error) => {
           if (error.error.code === "USER_ALREADY_EXISTS") {
-            toast.error("E-mail ou senha inválidos.");
+            toast.error("E-mail já cadastrado.");
             return form.setError("email", {
               message: "E-mail já cadastrado.",
             });
@@ -97,7 +84,6 @@ const SignUpForm = () => {
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Criar conta</CardTitle>
-
           <CardDescription>Crie uma conta para continuar.</CardDescription>
         </CardHeader>
 
@@ -110,39 +96,32 @@ const SignUpForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Nome</FormLabel>
-
                     <FormControl>
                       <Input placeholder="Digite seu nome" {...field} />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
-
                     <FormControl>
                       <Input placeholder="Digite seu email" {...field} />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Senha</FormLabel>
-
                     <FormControl>
                       <Input
                         placeholder="Digite sua senha"
@@ -150,19 +129,16 @@ const SignUpForm = () => {
                         {...field}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="passwordConfirmation"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Confirmar senha</FormLabel>
-
                     <FormControl>
                       <Input
                         placeholder="Digite a sua senha novamente"
@@ -170,13 +146,11 @@ const SignUpForm = () => {
                         {...field}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </CardContent>
-
             <CardFooter>
               <Button type="submit">Criar conta</Button>
             </CardFooter>

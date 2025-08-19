@@ -32,25 +32,15 @@ import { formatAddress } from "../../helpers/address";
 
 const formSchema = z.object({
   email: z.email("E-mail inválido"),
-
   fullName: z.string().min(1, "Nome completo é obrigatório"),
-
   cpf: z.string().min(14, "CPF inválido"),
-
   phone: z.string().min(15, "Celular inválido"),
-
   zipCode: z.string().min(9, "CEP inválido"),
-
   address: z.string().min(1, "Endereço é obrigatório"),
-
   number: z.string().min(1, "Número é obrigatório"),
-
   complement: z.string().optional(),
-
   neighborhood: z.string().min(1, "Bairro é obrigatório"),
-
   city: z.string().min(1, "Cidade é obrigatória"),
-
   state: z.string().min(1, "Estado é obrigatório"),
 });
 
@@ -58,53 +48,36 @@ type FormValues = z.infer<typeof formSchema>;
 
 interface AddressesProps {
   shippingAddresses: (typeof shippingAddressTable.$inferSelect)[];
-
   defaultShippingAddressId: string | null;
 }
 
 const Addresses = ({
   shippingAddresses,
-
   defaultShippingAddressId,
 }: AddressesProps) => {
   const router = useRouter();
-
   const [selectedAddress, setSelectedAddress] = useState<string | null>(
     defaultShippingAddressId || null,
   );
-
   const createShippingAddressMutation = useCreateShippingAddress();
-
   const updateCartShippingAddressMutation = useUpdateCartShippingAddress();
-
   const { data: addresses, isLoading } = useUserAddresses({
     initialData: shippingAddresses,
   });
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-
     defaultValues: {
       email: "",
-
       fullName: "",
-
       cpf: "",
-
       phone: "",
-
       zipCode: "",
-
       address: "",
-
       number: "",
-
       complement: "",
-
       neighborhood: "",
-
       city: "",
-
       state: "",
     },
   });
@@ -113,21 +86,16 @@ const Addresses = ({
     try {
       const newAddress =
         await createShippingAddressMutation.mutateAsync(values);
-
       toast.success("Endereço criado com sucesso!");
-
       form.reset();
-
       setSelectedAddress(newAddress.id);
 
       await updateCartShippingAddressMutation.mutateAsync({
         shippingAddressId: newAddress.id,
       });
-
       toast.success("Endereço vinculado ao carrinho!");
     } catch (error) {
       toast.error("Erro ao criar endereço. Tente novamente.");
-
       console.error(error);
     }
   };
@@ -139,13 +107,10 @@ const Addresses = ({
       await updateCartShippingAddressMutation.mutateAsync({
         shippingAddressId: selectedAddress,
       });
-
       toast.success("Endereço selecionado para entrega!");
-
       router.push("/cart/confirmation");
     } catch (error) {
       toast.error("Erro ao selecionar endereço. Tente novamente.");
-
       console.error(error);
     }
   };
@@ -155,7 +120,6 @@ const Addresses = ({
       <CardHeader>
         <CardTitle>Identificação</CardTitle>
       </CardHeader>
-
       <CardContent>
         {isLoading ? (
           <div className="py-4 text-center">
@@ -179,7 +143,6 @@ const Addresses = ({
                 <CardContent>
                   <div className="flex items-start space-x-2">
                     <RadioGroupItem value={address.id} id={address.id} />
-
                     <div className="flex-1">
                       <Label htmlFor={address.id} className="cursor-pointer">
                         <div>
@@ -196,7 +159,6 @@ const Addresses = ({
               <CardContent>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="add_new" id="add_new" />
-
                   <Label htmlFor="add_new">Adicionar novo endereço</Label>
                 </div>
               </CardContent>
@@ -231,11 +193,9 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email</FormLabel>
-
                       <FormControl>
                         <Input placeholder="Digite seu email" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -247,14 +207,12 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Nome completo</FormLabel>
-
                       <FormControl>
                         <Input
                           placeholder="Digite seu nome completo"
                           {...field}
                         />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -266,7 +224,6 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>CPF</FormLabel>
-
                       <FormControl>
                         <PatternFormat
                           format="###.###.###-##"
@@ -275,7 +232,6 @@ const Addresses = ({
                           {...field}
                         />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -287,7 +243,6 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Celular</FormLabel>
-
                       <FormControl>
                         <PatternFormat
                           format="(##) #####-####"
@@ -296,7 +251,6 @@ const Addresses = ({
                           {...field}
                         />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -308,7 +262,6 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>CEP</FormLabel>
-
                       <FormControl>
                         <PatternFormat
                           format="#####-###"
@@ -317,7 +270,6 @@ const Addresses = ({
                           {...field}
                         />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -329,11 +281,9 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Endereço</FormLabel>
-
                       <FormControl>
                         <Input placeholder="Digite seu endereço" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -345,11 +295,9 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Número</FormLabel>
-
                       <FormControl>
                         <Input placeholder="Digite o número" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -361,14 +309,12 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Complemento</FormLabel>
-
                       <FormControl>
                         <Input
                           placeholder="Apto, bloco, etc. (opcional)"
                           {...field}
                         />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -380,11 +326,9 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Bairro</FormLabel>
-
                       <FormControl>
                         <Input placeholder="Digite o bairro" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -396,11 +340,9 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Cidade</FormLabel>
-
                       <FormControl>
                         <Input placeholder="Digite a cidade" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -412,11 +354,9 @@ const Addresses = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Estado</FormLabel>
-
                       <FormControl>
                         <Input placeholder="Digite o estado" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}

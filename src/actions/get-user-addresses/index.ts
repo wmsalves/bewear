@@ -18,19 +18,14 @@ export async function getUserAddresses() {
 
   try {
     const addresses = await db
-
       .select()
-
       .from(shippingAddressTable)
-
       .where(eq(shippingAddressTable.userId, session.user.id))
-
       .orderBy(shippingAddressTable.createdAt);
 
     return addresses;
   } catch (error) {
     console.error("Erro ao buscar endereços:", error);
-
     throw new Error("Erro ao buscar endereços");
   }
 }

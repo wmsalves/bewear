@@ -9,12 +9,9 @@ export const getDecreaseCartProductMutationKey = (cartItemId: string) =>
 
 export const useDecreaseCartProduct = (cartItemId: string) => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationKey: getDecreaseCartProductMutationKey(cartItemId),
-
     mutationFn: () => decreaseCartProductQuantity({ cartItemId }),
-
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: getUseCartQueryKey() });
     },

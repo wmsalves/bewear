@@ -12,9 +12,7 @@ export const useCreateShippingAddress = () => {
 
   return useMutation({
     mutationKey: getCreateShippingAddressMutationKey(),
-
     mutationFn: createShippingAddress,
-
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: getUserAddressesQueryKey(),
