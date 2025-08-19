@@ -2,9 +2,9 @@ import { eq } from "drizzle-orm";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import Footer from "@/app/components/common/footer";
-import { Header } from "@/app/components/common/header";
-import ProductList from "@/app/components/common/product-list";
+import Footer from "@/components/common/footer";
+import { Header } from "@/components/common/header";
+import ProductList from "@/components/common/product-list";
 import { db } from "@/db";
 import { productTable, productVariantTable } from "@/db/schema";
 import { formatCentsToBRL } from "@/helpers/money";
