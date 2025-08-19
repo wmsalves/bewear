@@ -4,8 +4,7 @@
 
 ![Banner da loja](public/banner-01.png)  
 
-Aplicação web de e-commerce voltada para moda masculina, desenvolvida para simular uma loja online completa, moderna e funcional.  
-O foco principal foi criar uma experiência de compra simples, fluida e acessível em qualquer dispositivo.  
+Web e-commerce application focused on men's fashion, developed to simulate a complete, modern, and functional online store.The main focus was to create a simple, smooth, and accessible shopping experience across all devices. 
 
 </div>  
 
@@ -13,39 +12,39 @@ O foco principal foi criar uma experiência de compra simples, fluida e acessív
 
 <div align="center">
 
-## 🎯 Propósito do Projeto  
+## 🎯 Project Purpose 
 
 </div>
 
-A ideia central foi construir uma plataforma de vendas online onde usuários possam:  
-- Explorar produtos organizados por categorias  
-- Adicionar e remover itens do carrinho  
-- Realizar pedidos de forma prática e segura  
-- Acompanhar o status das compras  
+The main idea was to build an online sales platform where users can:
+- Explore products organized by categories  
+- Add and remove items from the cart
+- Place orders easily and securely
+- Track the status of their purchases 
 
-Além da funcionalidade, busquei aplicar boas práticas de desenvolvimento e tecnologias atuais para oferecer um projeto bem estruturado.  
+Besides functionality, the project applied best development practices and modern technologies to provide a well-structured application.
 
 ---
 
 <div align="center">
 
-## ⚙️ Funcionalidades Implementadas  
+## ⚙️ Implemented Features 
 
 </div>
 
-- 📂 **Catálogo de Produtos** com filtros e categorias  
-- 🛒 **Carrinho Persistente** que mantém os itens mesmo após recarregar a página  
-- 💳 **Integração com Stripe** para simular pagamentos  
-- 🔐 **Sistema de Autenticação** com cadastro e login  
-- 📦 **Gestão de Pedidos** com histórico de compras  
-- 📱 **Layout Responsivo** adaptado a desktop e mobile  
-- 🔍 **Recomendações de Produtos** para uma navegação mais interativa  
+- 📂 **Product Catalog** with filters and categories
+- 🛒 **Persistent Cart** that keeps items even after page reload
+- 💳 **Stripe Integration** for payment simulation  
+- 🔐 **Authentication System** with signup and login 
+- 📦 **Order Management** with purchase history 
+- 📱 **Responsive Layout** optimized for desktop and mobile
+- 🔍 **Product Recommendations** for interactive navigation
 
 ---
 
 <div align="center">
 
-## 🖼️ Demonstração  
+## 🖼️ Demo 
 
 ![Preview do site](public/banner-02.png)  
 
@@ -55,7 +54,7 @@ Além da funcionalidade, busquei aplicar boas práticas de desenvolvimento e tec
 
 <div align="center">
 
-## 🛠️ Tecnologias  
+## 🛠️ Technologies  
 
 </div>
 
@@ -77,91 +76,91 @@ Além da funcionalidade, busquei aplicar boas práticas de desenvolvimento e tec
 
 <div align="center">
 
-## 🚀 Como Rodar o Projeto  
+## 🚀 How to Run the Project  
 
 </div>
 
-### Pré-requisitos  
+### Prerequisites  
 - Node.js 18+  
-- PostgreSQL instalado  
-- Conta no Stripe (para simular pagamentos)  
+- PostgreSQL installed  
+- Stripe account (for payment simulation)
 
-### Passos  
+### Steps  
 
 ```bash
-# Clone este repositório
+# Clone this repository
 git clone https://github.com/wmsalves/bewear.git
 cd bewear
 
-# Configure o arquivo .env com suas chaves
-# Instale as dependências
+# Configure the .env file with your keys
+# Install dependencies
 npm install
 
-# Configure o banco de dados
+# Setup the database
 npm run db:generate
 npm run db:push
 npm run db:seed
 
-# Execute o servidor de desenvolvimento
+# Run the development server
 npm run dev
 ```
 
-Acesse em: [http://localhost:3000](http://localhost:3000)  
+Access at: [http://localhost:3000](http://localhost:3000)  
 
 ---
 
 <div align="center">
 
-## 📂 Estrutura do Código  
+## 📂 Code Structure 
 
 </div>
 
 ```
 src/
 ├── app/               # App Router
-│   ├── api/           # Rotas da API
-│   ├── auth/          # Autenticação
-│   ├── cart/          # Carrinho
-│   ├── checkout/      # Fluxo de pagamento
-│   ├── orders/        # Histórico de pedidos
-│   └── products/      # Detalhes de produtos
-├── components/        # Componentes reutilizáveis
-├── db/                # Configurações do banco de dados
-├── hooks/             # Hooks personalizados
-├── lib/               # Utilitários
-└── providers/         # Providers de contexto
+│   ├── api/           # API Routes
+│   ├── auth/          # Authentication
+│   ├── cart/          # Cart
+│   ├── checkout/      # Checkout flow
+│   ├── orders/        # Order history
+│   └── products/      # Product details
+├── components/        # Reusable components
+├── db/                # Database configurations
+├── hooks/             # Custom hooks
+├── lib/               # Utilities
+└── providers/         # Context providers
 ```
 
 ---
 
 <div align="center">
 
-## 📈 Principais Aprendizados  
+## 📈 Key Learnings 
 
 </div>
 
-Durante a construção do projeto, aprimorei conhecimentos em:  
-- 🔄 **Gerenciamento de Estado** com React Query  
-- 📦 **Integração entre Frontend e Backend** via API Routes  
-- 📱 **Responsividade** aplicada a diferentes tamanhos de tela  
-- 🔐 **Fluxo de Autenticação** com tokens seguros  
-- 💳 **Pagamentos com Stripe** em ambiente de testes  
+During the project development, I improved skills in:
+- 🔄 **State Management** with React Query
+- 📦 **Frontend-Backend Integration** via API Routes
+- 📱 **Responsiveness** across different screen sizes 
+- 🔐 **Authentication flow** with secure tokens
+- 💳 **Stripe Payments** in a test environment 
 
 ---
 
 <div align="center">
 
-## ☁️ Deploy  
+## ☁️ Deployment  
 
 </div>
 
-O projeto pode ser facilmente hospedado na [Vercel](https://vercel.com), aproveitando a integração direta com o Next.js.  
+The project can be easily hosted on [Vercel](https://vercel.com), leveraging direct integration with Next.js.
 
 ---
 
 <div align="center">
 
-## 📚 Referências  
+## 📚 References  
 
 </div>
 
@@ -175,8 +174,8 @@ O projeto pode ser facilmente hospedado na [Vercel](https://vercel.com), aprovei
 
 <div align="center">
 
-## 📜 Licença  
+## 📜 License  
 
-Este projeto está sob a licença MIT.  
+This project is licensed under the MIT License. 
 
 </div>
